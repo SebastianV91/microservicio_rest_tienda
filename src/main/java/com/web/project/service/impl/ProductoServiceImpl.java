@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 @Transactional
 @Service
 public class ProductoServiceImpl implements ProductoService {
@@ -17,6 +20,26 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public void save(Producto producto) {
         productoRepository.save(producto);
+    }
+
+    @Override
+    public boolean existsById(int id) {
+        return productoRepository.existsById(id);
+    }
+
+    @Override
+    public Optional<Producto> getOne(int id) {
+        return productoRepository.findById(id);
+    }
+
+    @Override
+    public void delete(int id) {
+        productoRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Producto> list() {
+        return productoRepository.findAll();
     }
 
 }
